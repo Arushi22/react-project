@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import ItemList from './ItemList'
 
-function ResturantCategory({data}) {
+function ResturantCategory({data, showItems}) {
 
-    const [showItems, setShowItems] = useState(false);    
+    // const [showItems, setShowItems] = useState(false);    
 
     const handleClicked = () => {
-        setShowItems(!showItems);
+       console.log("damm")
     }
     
   return (

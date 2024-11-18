@@ -29,7 +29,14 @@ const ResturantMenu = () => {
             <h1 className="font-bold my-6 text-2xl">{name} </h1>
             <h2 className="font-bold text-lg">{cuisines.join(",")}</h2>
             {/* categories accordians */
-                categories.map((category) => <ResturantCategory key={category?.card?.card?.title} data={category?.card?.card} /> )      
+                categories.map((category) => 
+                    // Controlled component
+                    <ResturantCategory 
+                        key={category?.card?.card?.title} 
+                        data={category?.card?.card} 
+                        showItems = {true}
+                        /> 
+                    )      
             }
         </div>
     )
