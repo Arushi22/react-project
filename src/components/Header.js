@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import useOnlineStatus from "../utils/useOnlineStatus";
 import Grocery from '../components/Grocery';
+import UserContext from '../utils/UserContext';
 // import foodFireLogo from "../images/logo.png";
 
 function Header() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [btnNameReact, setBtnNameReact] = useState("Login");
     const onlineStatus = useOnlineStatus();
-    
+
+    const {loggedInUser} = useContext(UserContext);
+    console.log("usercontext:", loggedInUser);
+  
     return(
         <div className="flex justify-between shadow-lg">
             <div className="logo-container">
@@ -15,20 +19,25 @@ function Header() {
             </div>
             <div className="flex items-center">
                 <ul className='flex p-4 m-4'>
-                  <li>Online Status: {onlineStatus ? "✅" : "🔴"}</li>
-                  <li><Link to="/">Home</Link></li>
-                  <li><Link to="/about">About Us</Link></li>
-                  <li><Link to="/contact">Contact Us</Link></li>
-                  <li><Link to="/grocery">Grocery</Link></li>
-                  <li><Link to="/cart">Cart</Link></li>
+                  <li className='px-4'>Online Status: {onlineStatus ? "✅" : "🔴"}</li>
+                  <li className='px-4'><Link to="/">Home</Link></li>
+                  <li className='px-4'><Link to="/about">About Us</Link></li>
+                  <li className='px-4'><Link to="/contact">Contact Us</Link></li>
+                  <li className='px-4'><Link to="/grocery">Grocery</Link></li>
+                  <li className='px-4'><Link to="/cart">Cart</Link></li>                  
                   <li>
-                  {
-                      isLoggedIn ?  
-                        <button className='isLoggedIn' onClick={()=>{setIsLoggedIn(false)}}>Logout</button> :
-                        <button className='isLoggedIn' onClick={()=>{setIsLoggedIn(true)}}>Login</button> 
-                      
-                    }
+                 <button
+                  className='login'
+                  onClick={()=>{
+                    btnNameReact === "Login"
+                    ? setBtnNameReact("Logout")
+                    : setBtnNameReact("Login")
+                  }}
+                 >
+                  {btnNameReact}
+                 </button>
                   </li>
+                  <li className='px-4'>{loggedInUser}</li>
                 </ul>
             </div>
            

@@ -12,7 +12,7 @@ const Body = () => {
 
   const ResturantCardPromoted = withPromotedLabel(RestaurantCard);
 
-  console.log(listOfRestaurants);
+  // console.log(listOfRestaurants);
 
   useEffect(()=>{
     fetchData();
@@ -23,7 +23,7 @@ const Body = () => {
     );
     const json = await data.json();
 
-    console.log(json);
+    // console.log(json);
     setListOfRestraunt(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilteredResturant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }

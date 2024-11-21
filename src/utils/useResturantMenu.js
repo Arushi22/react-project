@@ -6,16 +6,16 @@ const userResturantMenu = (resId) => {
     // fetchData
     useEffect(()=>{
             fetchMenu();
-            console.log(resId)
+            // console.log(resId)
         },[])
         
 
     const fetchMenu = async () => {
         const data = await fetch(`${MENU_API}${resId}`); //api
         const json = await data.json();
-        console.log("json data",data);
+        // console.log("json data",data);
         setResInfo(json.data);
-        console.log("Full API Response:", resInfo);
+        // console.log("Full API Response:", resInfo);
     }
 
     return resInfo
