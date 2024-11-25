@@ -12,6 +12,8 @@ import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 import ResturantMenu from "./components/ResturantMenu";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 // import Grocery from "./components/Grocery";
 
 const Grocery = lazy(() => import("./components/Grocery"));
@@ -27,14 +29,16 @@ const AppLayout = () => {
     setUserName(data.name);
   },[])
   return (
-    <UserContext.Provider value={{loggedInUser:userName}}>
-      <div className="app">
-        <Header />
-        <Outlet />
-        <Footer />
-      </div>
-    </UserContext.Provider>
-  )
+    <Provider store={appStore} >
+      <UserContext.Provider value={{loggedInUser:userName}}>
+        <div className="app">
+          <Header />
+          <Outlet />
+          <Footer />
+        </div>
+      </UserContext.Provider>
+    </Provider>
+    )
 };
 
 const appRouter = createBrowserRouter([

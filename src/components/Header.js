@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import useOnlineStatus from "../utils/useOnlineStatus";
 import Grocery from '../components/Grocery';
 import UserContext from '../utils/UserContext';
+import { useSelector } from 'react-redux';
 // import foodFireLogo from "../images/logo.png";
 
 function Header() {
@@ -11,6 +12,10 @@ function Header() {
 
     const {loggedInUser} = useContext(UserContext);
     console.log("usercontext:", loggedInUser);
+
+    // subscribing to a store using the selector
+    const cartItems = useSelector((store) => store.cart.items);
+    console.log("items:",cartItems)
   
     return(
         <div className="flex justify-between shadow-lg">
@@ -24,7 +29,7 @@ function Header() {
                   <li className='px-4'><Link to="/about">About Us</Link></li>
                   <li className='px-4'><Link to="/contact">Contact Us</Link></li>
                   <li className='px-4'><Link to="/grocery">Grocery</Link></li>
-                  <li className='px-4'><Link to="/cart">Cart</Link></li>                  
+                  <li className='px-4 font-bold text-xl'><Link to="/cart">🛒{cartItems.length}Items</Link></li>                  
                   <li>
                  <button
                   className='login'

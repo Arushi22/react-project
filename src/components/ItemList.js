@@ -1,10 +1,21 @@
 import React from 'react';
 import { CDN_URL } from '../utils/constants';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../utils/cartSlice';
 
 function ItemList({items}) {
+
+    const dispatch = useDispatch()
+
+    const handleAddItem = (item) => {
+        // dispatch an  action
+        dispatch(addItem(item))
+        // console.log("button clicked")
+    }
+
   return (
     <div>
-            {items.map(item => (
+            {items.map((item) => (
                 <div key={item.card.info.id} className='p-2 m-2 border-gray-400 border-b-2 text-left flex space-between'>                    
                     <div> 
                         <div className='py-2'>
@@ -15,7 +26,11 @@ function ItemList({items}) {
                     </div>
                     <div className='w-5/12'>                        
                         <div className='absolute'>
-                            <button className='bg-black text-white shadow-lg rounded-lg p-2 mx-5 '>Add +</button>
+                            <button className='bg-black text-white shadow-lg rounded-lg p-2 mx-5 '
+                                onClick={() => handleAddItem(item) }
+                            >
+                                Add +
+                            </button>
                         </div>
                         <img src={CDN_URL + item.card.info.imageId}  className='w-40 h-45 object-cover'/>
                     </div>
